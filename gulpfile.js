@@ -11,8 +11,8 @@ var gutil      = require('gulp-util');
 var assign     = require('lodash.assign');
 var uglify     = require('gulp-uglify');
 var rename     = require('gulp-rename');
-var insert = require('gulp-insert');
-var fs = require('fs');
+var insert     = require('gulp-insert');
+var fs         = require('fs');
 
 var licence = fs.readFileSync('./src/licence.js', 'utf8');
 

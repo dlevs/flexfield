@@ -15,7 +15,7 @@ function eventsList() {
 		// If browser is IE9 (non-standard oninput event), or document has Modernizr class
 		// to show lack on oninput event, use alternatives.
 		if (util.isIe9() || util.hasClass(document.documentElement, 'no-oninput')) {
-			eventsList.cache = eventsList.cache.concat(['keydown', 'cut', 'paste']);
+			eventsList.cache              = eventsList.cache.concat(['keydown', 'cut', 'paste']);
 			eventsList.cache.delayActions = true;
 		} else {
 			eventsList.cache.delayActions = false;
@@ -79,7 +79,7 @@ function resize(elem, delay) {
 	elem.style.height = '';
 	elem.style.height = elem.scrollHeight + util.getHeightOffset(style) + 'px';
 
-	change = getHeightChange(oldHeight, style.height);
+	change               = getHeightChange(oldHeight, style.height);
 	elem.style.overflowY = '';
 
 	if (change) {

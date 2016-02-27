@@ -21,7 +21,7 @@ function init(className) {
 	}
 
 	// Public methods exposed for user
-	app.trigger    = methods.resize;
+	app.trigger = methods.resize;
 	// app.triggerAll = methods.resizeAll;
 
 	// Init actions
