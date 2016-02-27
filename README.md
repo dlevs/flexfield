@@ -35,22 +35,26 @@ require('flexfield').init();
 ```
 
 ## Styling
-
+### Recommended Styling
+For smooth performance, the following styles are recommended:
 ``` css
 .js-flexfield {
     vertical-align: top; /* IE9 likes this */
-    resize: none;
     overflow-x: hidden;
+    resize: none;
+}
+```
 
-    max-height: 500px;
+### Minimum Height
+For a single-row textarea that resembles a generic input field, set line-height, min-height and height to be equal:
+``` css
+.js-flexfield {
     font-size: 14px;
     line-height: 15px;
     min-height: 15px;
     height: 15px;
 }
 ```
-
-Demo
 
 ## Methods
 ### flexfield.init(className)
@@ -78,7 +82,7 @@ $('#main-input')
     .trigger('flexfield');
 ```
 
-## Why Flexfield?
+## Why?
 
 Flexfield has a few advantages over similar plugins:
 
@@ -89,6 +93,10 @@ Flexfield has a few advantages over similar plugins:
 * Unobtrusive - the plugin only changes the textarea's height, allowing everything else to be defined with CSS.
 * Fires events when fields have grown or shrunk.
 * Self-contained - no prototype pollution.
+
+## Compatability
+Works in all modern browsers. IE9 and greater.
+
 
 ## License
 
