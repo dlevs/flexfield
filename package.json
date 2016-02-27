@@ -1,6 +1,6 @@
 {
   "name": "flexfield",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Plugin to automatically resize textarea elements to the size of the content.",
   "main": "flexfield.js",
   "repository": {
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": ["textarea", "input", "field", "grow", "resize", "auto", "height", "flexible"],
   "author": "Daniel Levett <dlevett@hotmail.co.uk>",
   "license": "ISC",
   "devDependencies": {
