@@ -12,29 +12,35 @@ var app = {init: init};
  * @param [className=js-flexfield] {String} - The className used by the plugin to target elements.
  */
 function init(className) {
+	try {
+		className = className || 'js-flexfield';
 
-	className = className || 'js-flexfield';
+		// Remove leading fullstop to allow selector-style string
+		if (className[0] === '.') {
+			className = className.slice(1);
+		}
 
-	// Remove leading fullstop to allow selector-style string
-	if (className[0] === '.') {
-		className = className.slice(1);
+		// Public methods exposed for user
+		app.trigger = methods.resize;
+		// app.triggerAll = methods.resizeAll;
+
+		// Init actions
+		methods.resizeAll.setSelector(className);
+
+		initEventListeners(className);
+
+		// Initial trigger events for when fields are already populated.
+		methods.resizeAll();
+
+		util.addClass(document.documentElement, 'flexfield');
+
+	} catch (e) {
+		if (window.console) console.warn('This browser does not support the Flexfield plugin.');
 	}
-
-	// Public methods exposed for user
-	app.trigger = methods.resize;
-	// app.triggerAll = methods.resizeAll;
-
-	// Init actions
-	methods.resizeAll.setSelector(className);
-
-	initEventListeners(className);
-
-	// Initial trigger events for when fields are already populated.
-	methods.resizeAll();
 
 	// Can only call init once.
 	app.init = function () {
-		console.warn('Multiple calls made to flexfield.init function. This can only be called once.');
+		if (window.console) console.warn('Multiple calls made to flexfield.init function. This can only be called once.');
 	};
 }
 

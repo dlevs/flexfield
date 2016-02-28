@@ -68,6 +68,22 @@ function hasClass(elem, className) {
 
 
 /**
+ * Add a class to an element
+ *
+ * @param elem {Element}
+ * @param className {String}
+ * @returns {String} - Element's new, full className
+ */
+function addClass(elem, className) {
+	if (elem.className) {
+		className = ' ' + className;
+	}
+
+	return elem.className += className;
+}
+
+
+/**
  * Has the body element width changed since the last time this function was called?
  *
  * @returns {Boolean}
@@ -160,6 +176,7 @@ module.exports = {
 	eventListener:        eventListener,
 	bodyWidthChanged:     bodyWidthChanged,
 	hasClass:             hasClass,
+	addClass:             addClass,
 	isIe9:                isIe9,
 	isTextareaNearBottom: isTextareaNearBottom,
 	scrollToBottom:       scrollToBottom,
