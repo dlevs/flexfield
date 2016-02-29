@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Flexfield</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <div class="desktop-flex-wrapper">
+            <div class="flex-grow">
+                <h1>Flexfield</h1>
+
+                <p class="baseline-none">A standalone JavaScript plugin to automatically resize a textarea field as the user types.
+                </p>
+            </div>
+            <div class="desktop-align-center desktop-padding-small-left">
+                <a href="js/vendor/flexfield.min.js" download="flexfield.min.js" class="btn btn-header-download" title="Minified build - 1.51KB">
+                    <span>
+					<span class="uppercase">Download</span><br>
+                    <small class="lowercase">v1.0.0 - 1.6KB gzipped</small>
+                    </span>
+                </a>
+                <a href="https://github.com/dlevs/flexfield">View on github</a>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <h2 id="examples">Examples</h2>
+
+        <div class="js-fields-container baseline-medium">
+            <div class="cf f-wrapper ">
+                <label class="f-label" for="f-simple"><span class="bold">Simple</span><br><span class="js-field-change-indicator"></span></label>
+                <textarea id="f-simple" class="f-field js-flexfield "></textarea>
+            </div>
+            <div class="cf f-wrapper ">
+                <label class="f-label" for="f-populated"><span class="bold">Prepopulated</span><br><span class="js-field-change-indicator"></span></label>
+                <textarea id="f-populated" class="f-field js-flexfield " spellcheck="false">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, deleniti eaque harum ipsam quam suscipit. Ab aliquam animi beatae culpa delectus deserunt expedita in, maiores minus nihil praesentium repudiandae voluptates. Expedita facere in ipsa nam sequi similique? Beatae consequatur enim nihil numquam possimus quam repellendus sit totam vero. Accusamus aliquam aut dicta libero obcaecati omnis, quam quasi quisquam rem unde.</textarea>
+            </div>
+            <div class="cf f-wrapper ">
+                <label class="f-label" for="f-multiple"><span class="bold">Multiple lines</span><br><span class="js-field-change-indicator"></span></label>
+                <textarea id="f-multiple" class="f-field js-flexfield f-field-multiline" placeholder="Add a comment..."></textarea>
+            </div>
+            <div class="cf f-wrapper js-field-template">
+                <label class="f-label" for="f-dynamic"><span class="bold">Dynamic</span><br><span class="js-field-change-indicator"></span></label>
+                <textarea id="f-dynamic" class="f-field js-flexfield ">Plugin events are registered on the document, so there was no need to apply events to this specific element when adding it. The only extra action needed was to perform the initial resize with flexfield.trigger(). When removing this textarea element, no destroy method is needed.</textarea>
+            </div>
+        </div>
+        <button class="subtle-button js-add-field">Add a field</button>
+
+        <hr>
+    </div>
+
+    <script src="js/vendor/flexfield.min.js"></script>
+    <script>
+        // Calling init straight after loading plugin instead of in main.js
+        // reduces the chance of a flash of unstyled content.
+
+        // This means event listeners in main.js won't pick up the initial
+        // events fired on resize for prepopulated fields, as they happen
+        // before the listeners are registered.
+        flexfield.init();
+    </script>
+    <script src="js/vendor/jquery-1.12.1.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

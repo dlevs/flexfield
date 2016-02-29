@@ -1,0 +1,20 @@
+[{
+	"id": "f-simple",
+	"title": "Simple"
+}, {
+	"id": "f-populated",
+	"title": "Prepopulated",
+	"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, deleniti eaque harum ipsam quam suscipit. Ab aliquam animi beatae culpa delectus deserunt expedita in, maiores minus nihil praesentium repudiandae voluptates. Expedita facere in ipsa nam sequi similique? Beatae consequatur enim nihil numquam possimus quam repellendus sit totam vero. Accusamus aliquam aut dicta libero obcaecati omnis, quam quasi quisquam rem unde.",
+	"spellcheckDisable": true
+}, {
+	"id": "f-multiple",
+	"title": "Multiple lines",
+	"classes": "f-field-multiline",
+	"placeholder": "Add a comment..."
+},
+{
+    "id": "f-dynamic",
+    "title": "Dynamic",
+    "text": "Plugin events are registered on the document, so there was no need to apply events to this specific element when adding it. The only extra action needed was to perform the initial resize with flexfield.trigger(). When removing this textarea element, no destroy method is needed.",
+    "wrapperClasses": "js-field-template"
+}]

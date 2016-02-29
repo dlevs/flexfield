@@ -1,0 +1,121 @@
+//@import "includes/vendor/normalize.less";
+@import "includes/base.less";
+
+/*----------------------------------------
+    START flexfield-specific styles
+----------------------------------------*/
+
+.boxSizingField(@font-size, @padding, @border-width, @lines) {
+
+  // The height and min-height should be set on the fields
+  // in order for them to behave smoothly with the flexfield plugin.
+
+  // This mixin calculates the exact height needed to create
+  // a field that is exactly (@lines) lines high.
+
+  @line-height: @font-size + 2;
+  @offset: (@padding + @border-width) * 2;
+  @height: (@line-height * @lines) + @offset;
+
+  box-sizing: border-box;
+
+  font-size: @font-size;
+  line-height: @line-height;
+
+  padding: @padding;
+  border: @border-width solid #444;
+
+  height: @height;
+  min-height: @height;
+}
+
+.f-field {
+  /* Recommended flexfield styles */
+  vertical-align: top;
+  overflow: hidden;
+  resize: none;
+
+  /* Height-related Styles */
+  .boxSizingField(16px, 5px, 1px, 1);
+  max-height: 500px;
+
+  /* misc */
+  width: 100%;
+  float: left;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.f-field-multiline {
+  .boxSizingField(16px, 10px, 1px, 3);
+  border-radius: 4px;
+}
+
+/*----------------------------------------
+    END flexfield-specific styles
+----------------------------------------*/
+
+.f-wrapper {
+  margin-bottom: 30px;
+}
+
+.f-label {
+  float: left;
+  clear: left;
+  width: 100%;
+  padding: 5px 5px 5px 0;
+  box-sizing: border-box;
+}
+
+.btn-header-download {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.js-remove {
+  float: right;
+}
+
+.js-field-template {
+  display: none;
+}
+
+// Desktop styles
+@media screen and (min-width: 767px) {
+
+  .main-wrapper {
+    padding: 40px;
+  }
+
+  .f-field {
+    width: 80%;
+  }
+
+  .f-label {
+    width: 20%;
+  }
+
+  .desktop-flex-wrapper {
+    display: flex;
+  }
+
+  .desktop-align-center {
+    text-align: center;
+  }
+
+  .desktop-padding-small-left {
+    padding-left: 10px;
+  }
+
+  .btn-header-download {
+    margin: 0 0 6px;
+  }
+
+  .js-remove {
+    float: none;
+  }
+
+}
+
+@import "includes/utility.less";

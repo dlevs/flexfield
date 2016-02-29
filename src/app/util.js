@@ -3,16 +3,15 @@
 /**
  * Emit a custom event.
  *
- * @param elem {Element}
+ * @param elem {Element, Document}
  * @param eventName {String}
- * @param detail {Object}
+ * @param [detail] {Object}
  */
 function emitCustomEvent(elem, eventName, detail) {
 	var event,
 		options = {bubbles: true, cancelable: true, detail: detail};
 
 	if (window.CustomEvent) {
-		if (detail) options.detail = detail;
 		event = new CustomEvent(eventName, options);
 	} else {
 		// IE

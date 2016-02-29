@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<title>Flexfield</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+	<div class="desktop-flex-wrapper">
+		<div class="flex-grow">
+			<h1>Flexfield</h1>
+
+			<p class="baseline-none">A standalone JavaScript plugin to automatically resize a textarea field as the user
+				types.</p>
+		</div>
+		<div class="desktop-align-center desktop-padding-small-left">
+			<a href="js/vendor/flexfield.min.js" download="flexfield.min.js" class="btn btn-header-download"
+			   title="Minified build - 1.51KB">
+				<span>
+					<span class="uppercase">Download</span><br>
+					<small class="lowercase">v{{version}} - {{gzippedFileSize}} gzipped</small>
+				</span>
+			</a>
+			<a href="{{urls.repository}}">View on github</a>
+		</div>
+	</div>
+
+	<hr>
+
+
+	<h2 id="examples">Examples</h2>
+
+	<div class="js-fields-container baseline-medium">
+		{{#each fields}}
+			{{> field}}
+		{{/each}}
+	</div>
+	<button class="subtle-button js-add-field">Add a field</button>
+
+	<hr>
+</div>
+
+<script src="js/vendor/flexfield.min.js"></script>
+<script>
+	// Calling init straight after loading plugin instead of in main.js
+	// reduces the chance of a flash of unstyled content.
+
+	// This means event listeners in main.js won't pick up the initial
+	// events fired on resize for prepopulated fields, as they happen
+	// before the listeners are registered.
+	flexfield.init();
+</script>
+<script src="js/vendor/jquery-1.12.1.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

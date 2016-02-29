@@ -10,7 +10,7 @@ var util = require('./util');
  */
 function eventsList() {
 	if (!eventsList.cache) {
-		eventsList.cache = ['input', 'flexfield'];
+		eventsList.cache = ['input'];
 
 		// If browser is IE9 (non-standard oninput event), or document has Modernizr class
 		// to show lack on oninput event, use alternatives.
@@ -55,9 +55,10 @@ function getHeightChange(oldHeight, newHeight) {
  *
  * @param elem {HTMLTextAreaElement}
  * @param [delay=false] {Boolean} - Push action to back of event queue - for events like keydown and paste
- * @returns {boolean}
+ * @returns {Boolean}
  */
 function resize(elem, delay) {
+
 	// If keydown/ paste events are used instead of an input event, measuring
 	// of input scrollHeight needs to be delayed until the text content has changed.
 	if (delay) {
@@ -69,21 +70,32 @@ function resize(elem, delay) {
 		return false;
 	}
 
-	elem.style.overflowY = 'hidden';
-
 	var style        = window.getComputedStyle(elem, null),
 		isNearBottom = util.isTextareaNearBottom(elem, style),
 		oldHeight    = style.height,
 		change;
 
+
 	elem.style.height = '';
 	elem.style.height = elem.scrollHeight + util.getHeightOffset(style) + 'px';
 
-	change               = getHeightChange(oldHeight, style.height);
-	elem.style.overflowY = '';
+
+	if (style.height === style.maxHeight) {
+		elem.style.overflowY = 'scroll';
+	} else {
+		elem.style.overflowY = 'hidden';
+	}
+
+
+	if (isNearBottom) {
+		util.scrollToBottom(elem);
+	}
+	
+
+	change = getHeightChange(oldHeight, style.height);
 
 	if (change) {
-		util.emitCustomEvent(elem, 'flexfield.resize', {changeType: change});
+		util.emitCustomEvent(elem, 'flexfield-resize', {change: change});
 
 		// If first trigger caused vertical scrollbar to be displayed,
 		// body width shrinks in some browsers and some inputs may need
@@ -91,10 +103,6 @@ function resize(elem, delay) {
 		if (util.bodyWidthChanged()) {
 			resizeAll();
 		}
-	}
-
-	if (isNearBottom) {
-		util.scrollToBottom(elem);
 	}
 }
 

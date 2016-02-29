@@ -32,7 +32,7 @@ function init(className) {
 		// Initial trigger events for when fields are already populated.
 		methods.resizeAll();
 
-		util.addClass(document.documentElement, 'flexfield');
+		util.addClass(document.documentElement, 'flexfield-active');
 
 	} catch (e) {
 		if (window.console) console.warn('This browser does not support the Flexfield plugin.');

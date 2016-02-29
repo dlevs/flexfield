@@ -1,6 +1,6 @@
 {
   "name": "flexfield",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Plugin to automatically resize textarea elements to the size of the content.",
   "main": "flexfield.js",
   "repository": {
@@ -10,18 +10,35 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["textarea", "input", "field", "grow", "resize", "auto", "height", "flexible"],
+  "keywords": [
+    "textarea",
+    "input",
+    "field",
+    "grow",
+    "resize",
+    "auto",
+    "height",
+    "flexible"
+  ],
   "author": "Daniel Levett <dlevett@hotmail.co.uk>",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-clean-css": "^2.0.2",
+    "gulp-compile-handlebars": "^0.6.1",
     "gulp-concat": "^2.6.0",
     "gulp-insert": "^0.5.0",
+    "gulp-jsbeautifier": "^1.0.2",
+    "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
+    "gzip-size": "^3.0.0",
     "lodash.assign": "^3.2.0",
+    "round": "^2.0.1",
     "uglify": "^0.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",

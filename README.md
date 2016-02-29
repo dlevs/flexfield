@@ -2,6 +2,8 @@
 
 A standalone JavaScript plugin to automatically resize a textarea field as the user types.
 
+[Demo](http://dlevs.com/flexfield)
+
 ## Getting Started
 
 ### Installing
@@ -39,9 +41,9 @@ require('flexfield').init();
 For smooth performance, the following styles are recommended:
 ``` css
 .js-flexfield {
-    vertical-align: top; /* IE9 likes this */
-    overflow-x: hidden;
-    resize: none;
+    overflow: hidden;
+    vertical-align: top; /* Prevents a flicker on IE9 */
+    resize: none; /* Makes little sense when field height is being set automatically */
 }
 ```
 
@@ -49,12 +51,13 @@ For smooth performance, the following styles are recommended:
 For a single-row textarea that resembles a generic input field, set line-height, min-height and height to be equal:
 ``` css
 .js-flexfield {
-    font-size: 14px;
-    line-height: 15px;
-    min-height: 15px;
-    height: 15px;
+    font-size: 16px;
+    line-height: 18px;
+    min-height: 18px;
+    height: 18px;
 }
 ```
+The above example assumes that the box-sizing property is set to the default "content-box". For border-box examples, see [demo](http://dlevs.com/flexfield).
 
 ## Methods
 ### flexfield.init(className)
@@ -65,7 +68,7 @@ This applies the event listeners to the document. An optional className can be s
 
 ### flexfield.trigger(element)
 
-The single call to flexfield.init() already applies the necessary event listeners to resize all textareas on user interaction. However, when creating a new textarea element, or changing the value of a textarea dynamically with JavaScript, the first resize must be triggered manually:
+The single call to flexfield.init() already applies the necessary event listeners to resize all textareas on user interaction. However, when creating a new textarea element, or changing the value of a textarea dynamically with JavaScript, a resize must be triggered manually:
 
 
 ``` js
@@ -74,13 +77,21 @@ elem.value = 'Something else';
 flexfield.trigger(elem);
 ```
 
-The same result can be achieved by firing the "flexfield" event on the element. With jQuery, it would look like this:
+## Events
 
+### flexfield-resize
+Fired when a field's height changes. Event.detail.change is a string value describing the type of change.
+
+A jQuery example:
 ``` js
-$('#main-input')
-    .val('Something else')
-    .trigger('flexfield');
+$(document).on('flexfield-resize', '.js-flexfield', function (e) {
+    var change  = e.originalEvent.detail.change, // 'grow' or 'shrink'
+        height  = $(this).height();
+
+    alert(change + ' to ' + height + 'px'); // eg "grow to 45px"
+});
 ```
+
 
 ## Why?
 
@@ -90,8 +101,7 @@ Flexfield has a few advantages over similar plugins:
 * No dependencies
 * Makes uses of event delegation so it does not need to be initialised for every element. Because of this, textarea elements can be added or removed dynamically, without having to worry about memory leaks or calling <span class="code">.destroy()</span> methods.
 * Textarea height is calculated from the element's <span class="code">scrollHeight</span> property, so there is no need for a "shadow element", which can lead to glitches caused by mismatched styling.
-* Unobtrusive - the plugin only changes the textarea's height, allowing everything else to be defined with CSS.
-* Fires events when fields have grown or shrunk.
+* Unobtrusive - the plugin only changes the textarea's height and overflow, allowing everything else to be defined with CSS.
 * Self-contained - no prototype pollution.
 
 ## Compatability
