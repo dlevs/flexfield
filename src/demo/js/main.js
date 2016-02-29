@@ -1,6 +1,7 @@
 (function () {
 
-	var $fieldsContainer     = $('.js-fields-container'),
+	var dynamicFieldCount    = 0,
+		$fieldsContainer     = $('.js-fields-container'),
 		$fieldTemplate       = $('.js-field-template'),
 		$deleteFieldTemplate = $('<button>')
 			.text('remove')
@@ -9,17 +10,20 @@
 	$(document)
 		.on('click', '.js-add-field', function () {
 
-			var $wrapper = $fieldTemplate
-				.clone()
-				.removeClass('js-field-template');
+			var fieldId  = 'dynamic-field-' + dynamicFieldCount++,
+				$wrapper = $fieldTemplate.clone().removeClass('js-field-template');
 
+			// Label actions
 			$wrapper
 				.find('.f-label')
+				.attr('for', fieldId)
 				.append($deleteFieldTemplate.clone());
 
+			// Textarea actions
 			$wrapper
 				.appendTo($fieldsContainer)
 				.find('.js-flexfield')
+				.attr('id', fieldId)
 				.each(function () {
 					flexfield.trigger(this);
 				});
@@ -42,5 +46,5 @@
 				.text('Last event: ')
 				.append($change);
 		});
-	
+
 })();
